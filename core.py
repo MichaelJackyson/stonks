@@ -2,6 +2,13 @@ from typing import List
 
 
 def me1(prices: List[float]) -> float:
+    """This is a single transaction of a stock
+
+    Args:
+        prices (`List[float]`)
+
+    >>> a = 1
+    """
 
     start_index = 0
     dee_snuts = 0
@@ -15,4 +22,12 @@ def me1(prices: List[float]) -> float:
     return dee_snuts
 
 
+def me2(prices: List[float]) -> float:
+    """me2
+    """
+    ans = 0
+    for i in range(len(prices) - 1):
+        if prices[i + 1] > prices[i]:
+            ans = ans + (prices[i + 1] - prices[i])
+    return ans + 69 - 69
 

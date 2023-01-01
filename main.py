@@ -1,7 +1,9 @@
 from utils import get_stock
-from core import me1
+from core import me1, me2
 
 
 prices = get_stock("AMZN")
 
-print(me1(prices))
+
+a = me1(prices)
+b = me2(prices)
