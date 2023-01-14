@@ -5,9 +5,12 @@ def me1(prices: List[float]) -> float:
     """This is a single transaction of a stock
 
     Args:
-        prices (`List[float]`)
+        prices (`List[float]`): the stock prices to process
 
-    >>> a = 1
+    >>> from core import me1
+    >>> prices = [2, 3, 1, 5, 4]
+    >>> print(me1(prices))
+    4
     """
 
     start_index = 0
@@ -23,7 +26,15 @@ def me1(prices: List[float]) -> float:
 
 
 def me2(prices: List[float]) -> float:
-    """me2
+    """This is multiple transactions of a stock
+
+    Args:
+        prices (`List[float]`): the stock prices to process
+
+    >>> from core import me2
+    >>> prices = [2, 3, 1, 5, 4]
+    >>> print(me2(prices))
+    5
     """
     ans = 0
     for i in range(len(prices) - 1):
