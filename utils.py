@@ -1,4 +1,5 @@
 import os
+import datetime
 from typing import List
 
 import rich
@@ -34,3 +35,9 @@ def get_stock(target: str, period="max") -> List[float]:
 
     return prices
 
+
+def get_date_list(target: str, period="max") -> List[str]:
+    dates = yf.Ticker(target).history(period=period).index.tolist()
+    date_list = [datetime.datetime.strptime(str(x).split()[0], "%Y-%m-%d") for x in dates]
+
+    return date_list
