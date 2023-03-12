@@ -36,7 +36,19 @@ def get_stock(target: str, period="max") -> List[float]:
     return prices
 
 
-def get_date_list(target: str, period="max") -> List[str]:
+def get_date_list(target: str, period: str = "max") -> List[datetime.datetime]:
+    """
+    Generates a list of datetime objects based on the specified targeted stock and period.
+
+    Args:
+        target (str): A string that specifies the targeted stock for which date list is required.
+        period (str, optional): A string that specifies the time period for which the date list 
+                                should be generated. Defaults to "max".
+
+    Returns:
+        List[datetime.datetime]: A list of datetime objects representing the dates 
+                                  based on the target and period parameters.
+    """
     dates = yf.Ticker(target).history(period=period).index.tolist()
     date_list = [datetime.datetime.strptime(str(x).split()[0], "%Y-%m-%d") for x in dates]
 
