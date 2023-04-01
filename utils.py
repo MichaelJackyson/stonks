@@ -1,6 +1,6 @@
 import os
 import datetime
-from typing import List
+from typing import List, Dict
 
 import rich
 import numpy as np
@@ -36,7 +36,7 @@ def get_stock(target: str, period="max") -> List[float]:
     return prices
 
 
-def get_date_list(target: str, period: str = "max") -> List[datetime.datetime]:
+def get_date_list(target: str, period: str = "10y") -> List[datetime.datetime]:
     """
     Generates a list of datetime objects based on the specified targeted stock and period.
 
@@ -53,3 +53,25 @@ def get_date_list(target: str, period: str = "max") -> List[datetime.datetime]:
     date_list = [datetime.datetime.strptime(str(x).split()[0], "%Y-%m-%d") for x in dates]
 
     return date_list
+
+
+def get_stock_price_date(target: str, period="10y") -> Dict[datetime.datetime, float]:
+    """it gets the stock prices and date at the same time
+
+    Args:
+        target (`str`): Stock call number required
+        period (`str`): The time of the info asked
+
+    >>> from utils import price_date
+    >>> price_date = get_stock_price_date(target="TSLA", period="1y")
+    >>> print(price_date)
+    {datetime.datetime(2023, 3, 20, 0, 0): 183.25, datetime.datetime(2023, 3, 21, 0, 0): 197.5800018310547, ...}
+    """
+
+    stock = yf.Ticker(target)
+    hist = stock.history(period=period)
+
+    prices = hist["Close"].tolist()
+    date_list = [datetime.datetime.strptime(str(x).split()[0], "%Y-%m-%d") for x in hist.index.tolist()]
+
+    return {k: v for k, v in zip(date_list, prices)}
