@@ -62,7 +62,7 @@ def get_stock_price_date(target: str, period="10y") -> Dict[datetime.datetime, f
         target (`str`): Stock call number required
         period (`str`): The time of the info asked
 
-    >>> from utils import price_date
+    >>> from utils import get_stock_price_date
     >>> price_date = get_stock_price_date(target="TSLA", period="1y")
     >>> print(price_date)
     {datetime.datetime(2023, 3, 20, 0, 0): 183.25, datetime.datetime(2023, 3, 21, 0, 0): 197.5800018310547, ...}
