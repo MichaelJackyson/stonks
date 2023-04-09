@@ -1,12 +1,16 @@
-from utils import get_stock
+from utils import get_stock, get_date_list, get_stock_price_date, draw_graph
 from core import me1, me2
 
 
-prices = get_stock("AMZN")
+# prices = get_stock("TSLA ")
+price_date = get_stock_price_date(target="ETH-USD", period="3y")
+print(price_date)
 
-print(len(prices))
+draw_graph(list(price_date.keys()), list(price_date.values()))
 
-a = me1(prices)
-b = me2(prices)
+# print(len(prices))
 
-assert b >= a
+# a = me1(prices)
+# b = me2(prices)
+
+# assert b >= a
