@@ -1,6 +1,8 @@
 import os
 import datetime
 from typing import List, Dict
+import plotly.graph_objects as go
+
 
 import rich
 import numpy as np
@@ -75,3 +77,31 @@ def get_stock_price_date(target: str, period="10y") -> Dict[datetime.datetime, f
     date_list = [datetime.datetime.strptime(str(x).split()[0], "%Y-%m-%d") for x in hist.index.tolist()]
 
     return {k: v for k, v in zip(date_list, prices)}
+
+
+def draw_graph(date_list: List[datetime.datetime], prices: List[float]) -> None:
+    """
+    Draw a graph of prices over time.
+
+    Args:
+    - date_list: A list of datetime.datetime objects representing dates for which prices are given.
+    - prices: A list of float values representing the prices for the corresponding dates in date_list.
+
+    Returns:u
+    - None.
+
+    This function draws a graph of the given data using a suitable graphing library. The graph can be used to visualize 
+    trends, patterns or correlations in the data.
+    """
+    fig = go.Figure()
+
+    fig.add_trace(
+        go.Scatter(
+            x=date_list, y=prices,
+            mode="lines",   
+            name="abc",
+            line=dict(width=2)
+        )
+    )
+
+    fig.show()
