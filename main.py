@@ -11,7 +11,17 @@ def average(prices):
     return sum(prices) / len(prices)
 
 
+def avg_of_first_10_days(prices):
+    return sum(prices[:10]) / 10.0
+
+
+def avg_of_first_k_days(prices, k):
+    # TODO
+    pass
+
+
 print(average(prices))
+print(avg_of_first_10_days(prices))
 exit()
 
 
